@@ -48,6 +48,23 @@ func (f Float) IsNegative() bool {
 	return f < 0.0
 }
 
+// IsBetween checks if value is between (a) and (b)
+func (f Float) IsBetween(min, max float64) bool {
+	return float64(f) >= min && float64(f) <= max
+}
+
+// IsLatitude checks if value is a valid latitude
+func (f Float) IsLatitude() bool {
+	s := fmt.Sprintf("%f", f)
+	return regexLatitude.MatchString(s)
+}
+
+// IsLongitude checks if value is a valid longitude
+func (f Float) IsLongitude() bool {
+	s := fmt.Sprintf("%f", f)
+	return regexLongitude.MatchString(s)
+}
+
 // String returns the string type value of the float number
 func (f Float) String() string {
 	return fmt.Sprintf("%f", f)

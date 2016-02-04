@@ -48,6 +48,23 @@ func (i Integer) IsNegative() bool {
 	return i < 0
 }
 
+// IsBetween checks if value is between (a) and (b)
+func (i Integer) IsBetween(min, max int) bool {
+	return int(i) >= min && int(i) <= max
+}
+
+// IsLatitude checks if value is a valid latitude
+func (i Integer) IsLatitude() bool {
+	s := fmt.Sprintf("%d", i)
+	return regexLatitude.MatchString(s)
+}
+
+// IsLongitude checks if value is a valid longitude
+func (i Integer) IsLongitude() bool {
+	s := fmt.Sprintf("%d", i)
+	return regexLongitude.MatchString(s)
+}
+
 // String returns the string type value of the integer
 func (i Integer) String() string {
 	return fmt.Sprintf("%d", i)

@@ -87,6 +87,16 @@ func (str String) IsURL() bool {
 	return regexURL.MatchString(str.String())
 }
 
+// IsLatitude checks if value is a valid latitude
+func (str String) IsLatitude() bool {
+	return regexLatitude.MatchString(str.String())
+}
+
+// IsLongitude checks if value is a valid longitude
+func (str String) IsLongitude() bool {
+	return regexLongitude.MatchString(str.String())
+}
+
 // IsUUID checks if string is in UUID format
 func (str String) IsUUID() bool {
 	return regexUUID.MatchString(str.String())
