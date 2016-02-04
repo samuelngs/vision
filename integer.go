@@ -65,6 +65,12 @@ func (i Integer) IsLongitude() bool {
 	return regexLongitude.MatchString(s)
 }
 
+// IsUSPhoneNumber checks if the value is a valid us phone number
+func (i Integer) IsUSPhoneNumber() bool {
+	s := fmt.Sprintf("%d", i)
+	return regexUSPhoneNumber.MatchString(s)
+}
+
 // String returns the string type value of the integer
 func (i Integer) String() string {
 	return fmt.Sprintf("%d", i)

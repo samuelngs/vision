@@ -97,6 +97,11 @@ func (str String) IsLongitude() bool {
 	return regexLongitude.MatchString(str.String())
 }
 
+// IsUSPhoneNumber checks if the value is a valid us phone number
+func (str String) IsUSPhoneNumber() bool {
+	return regexUSPhoneNumber.MatchString(str.String())
+}
+
 // IsUUID checks if string is in UUID format
 func (str String) IsUUID() bool {
 	return regexUUID.MatchString(str.String())
