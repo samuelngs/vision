@@ -9,14 +9,11 @@ import (
 func ParseFloat(arg interface{}) (Float, Error) {
 	switch obj := arg.(type) {
 	case string:
-		s, err := ParseString(obj)
+		i, err := strconv.ParseFloat(obj, 64)
 		if err != nil {
 			return 0, ErrInvalid
 		}
-		if !s.IsFloat() {
-			return 0, ErrInvalid
-		}
-		return s.Float(), ErrInvalid
+		return Float(i), nil
 	case bool:
 		if obj {
 			return Float(1.0), nil

@@ -9,14 +9,11 @@ import (
 func ParseInteger(arg interface{}) (Integer, Error) {
 	switch obj := arg.(type) {
 	case string:
-		s, err := ParseString(obj)
+		i, err := strconv.ParseInt(obj, 10, 64)
 		if err != nil {
 			return 0, ErrInvalid
 		}
-		if !s.IsInteger() {
-			return 0, ErrInvalid
-		}
-		return s.Integer(), ErrInvalid
+		return Integer(i), nil
 	case bool:
 		if obj {
 			return Integer(1), nil

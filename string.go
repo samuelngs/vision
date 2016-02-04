@@ -22,7 +22,7 @@ func ParseString(arg interface{}) (String, Error) {
 
 // String returns the string value of String instance
 func (str String) String() string {
-	return fmt.Sprintf("%v", str)
+	return string(str)
 }
 
 // Integer returns the integer value of the string (has to be an integer number)
