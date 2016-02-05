@@ -68,13 +68,19 @@ func (str String) MustEmpty() bool {
 
 // IsLength checks if string length is valid
 func (str String) IsLength(min, max int) bool {
-	return len(str) >= min && len(str) <= max
+	if max > 0 {
+		return len(str) >= min && len(str) <= max
+	}
+	return len(str) >= min
 }
 
 // MustLength checks if trimed string is match its length
 func (str String) MustLength(min, max int) bool {
 	count := len(strings.Trim(str.String(), Trim))
-	return count >= min && count <= max
+	if max > 0 {
+		return count >= min && count <= max
+	}
+	return count >= min
 }
 
 // IsEmail checks if string is a valid email address

@@ -19,13 +19,27 @@ func ParseInteger(arg interface{}) (Integer, Error) {
 			return Integer(1), nil
 		}
 		return Integer(0), nil
-	case int, int8, int32, int64, uint, uint8, uint32, uint64:
-		i, err := strconv.ParseInt(fmt.Sprintf("%d", obj), 10, 64)
-		if err != nil {
-			return 0, ErrInvalid
-		}
-		return Integer(i), nil
-	case float32, float64, complex64:
+	case int:
+		return Integer(obj), nil
+	case int8:
+		return Integer(obj), nil
+	case int32:
+		return Integer(obj), nil
+	case int64:
+		return Integer(obj), nil
+	case uint:
+		return Integer(obj), nil
+	case uint8:
+		return Integer(obj), nil
+	case uint32:
+		return Integer(obj), nil
+	case uint64:
+		return Integer(obj), nil
+	case float32:
+		return Integer(obj), nil
+	case float64:
+		return Integer(obj), nil
+	case complex64, complex128:
 		i, err := strconv.ParseInt(fmt.Sprintf("%f", obj), 10, 64)
 		if err != nil {
 			return 0, ErrInvalid
