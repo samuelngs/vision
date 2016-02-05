@@ -27,6 +27,8 @@ var (
 	ErrUnknownTag = ValueError{"unknown tag"}
 	// ErrInvalid is the error returned when variable is invalid
 	ErrInvalid = ValueError{"invalid value"}
+	// ErrType is the error returned when data is invalid type
+	ErrType = ValueError{"invalid email"}
 )
 
 type (
