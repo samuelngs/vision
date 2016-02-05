@@ -95,8 +95,8 @@ func TestStringIsLength(t *testing.T) {
 
 func TestWhitespaceStringIsLength(t *testing.T) {
 	text := String(" ")
-	if text.IsLength(0, 0) {
-		t.Fatalf("Unexpected result to be false. Found %v, expected %v", text.IsLength(0, 0), false)
+	if !text.IsLength(0, 1) {
+		t.Fatalf("Unexpected result to be false. Found %v, expected %v", text.IsLength(0, 1), false)
 	}
 }
 
