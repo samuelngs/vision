@@ -3,9 +3,9 @@ package vision
 import "testing"
 
 type LoginParameters struct {
-	username string `valid:"string,min:3;max:12,required"`
-	password string `valid:"string,strict-required"`
-	gender   string `valid:"integer,enum(1,2,8)"`
+	username string `param:"string,min:3;max:12,required"`
+	password string `param:"string,strict-required"`
+	gender   string `param:"integer,enum:1|2|8,required"`
 }
 
 func TestValidate(t *testing.T) {
@@ -26,7 +26,7 @@ func TestFailValidate(t *testing.T) {
 	_, err := Validate(&LoginParameters{
 		username: "samuel",
 		password: " ",
-		gender:   "1",
+		gender:   "3",
 	})
 
 	if err == nil {

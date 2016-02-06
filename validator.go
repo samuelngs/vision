@@ -57,7 +57,7 @@ func ValidateCustom(tag string, obj interface{}) (*Param, Error) {
 func extractOptions(str string) []string {
 	return strings.FieldsFunc(str, func(r rune) bool {
 		switch r {
-		case '|', ';', ',':
+		case ';', ',':
 			return true
 		}
 		return false
@@ -78,7 +78,7 @@ func extractRules(rules []string) *Rules {
 		} else {
 			opts.RLock()
 			defer opts.RUnlock()
-			opts.m[val] = "-"
+			opts.m[val] = ""
 		}
 	}
 	return opts
@@ -211,6 +211,20 @@ func validateField(s string, rules *Rules) (interface{}, Error) {
 			}
 			if !val.MustLength(0, int(i)) {
 				return nil, ErrMax
+			}
+		case "enum":
+			if opt == "" {
+				panic("enum requires at least one item")
+			}
+			enums := strings.SplitN(opt, "|", -1)
+			match := false
+			for _, v := range enums {
+				if val.Val() == v {
+					match = true
+				}
+			}
+			if !match {
+				return nil, ErrInvalid
 			}
 		}
 	}
