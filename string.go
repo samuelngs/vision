@@ -16,8 +16,9 @@ func ParseString(arg interface{}) (String, Error) {
 		return String(fmt.Sprintf("%d", obj)), nil
 	case float32, float64, complex64:
 		return String(fmt.Sprintf("%f", obj)), nil
+	default:
+		return String(fmt.Sprintf("%v", obj)), nil
 	}
-	return "", ErrUnsupported
 }
 
 // String returns the string value of String instance
