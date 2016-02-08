@@ -14,7 +14,7 @@ func ParseString(arg interface{}) (String, Error) {
 		return String(fmt.Sprintf("%t", obj)), nil
 	case int, int8, int32, int64, uint, uint8, uint32, uint64:
 		return String(fmt.Sprintf("%d", obj)), nil
-	case float32, float64, complex64:
+	case float32, float64, complex64, complex128:
 		return String(fmt.Sprintf("%f", obj)), nil
 	default:
 		return String(fmt.Sprintf("%v", obj)), nil
@@ -167,6 +167,15 @@ func (str String) IsInteger() bool {
 // IsFloat checks if string is a float number
 func (str String) IsFloat() bool {
 	return regexFloat.MatchString(str.String())
+}
+
+// IsBool checks if string is a bool value
+func (str String) IsBool() bool {
+	s := strings.Trim(strings.ToLower(str.Val()), Trim)
+	if s == "true" || s == "false" {
+		return true
+	}
+	return false
 }
 
 // Val returns the build-in type value
