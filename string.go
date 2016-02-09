@@ -3,6 +3,7 @@ package vision
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 // ParseString parse string value and return String object
@@ -16,6 +17,8 @@ func ParseString(arg interface{}) (String, Error) {
 		return String(fmt.Sprintf("%d", obj)), nil
 	case float32, float64, complex64, complex128:
 		return String(fmt.Sprintf("%f", obj)), nil
+	case time.Time:
+		return String(obj.String()), nil
 	default:
 		return String(fmt.Sprintf("%v", obj)), nil
 	}
@@ -55,6 +58,18 @@ func (str String) Bool() Bool {
 		return Bool(true)
 	}
 	return Bool(false)
+}
+
+// Time returns the time format of string
+func (str String) Time() (time.Time, error) {
+	t, e := time.Parse(
+		time.RFC3339,
+		str.Val(),
+	)
+	if e != nil {
+		return time.Now(), e
+	}
+	return t, nil
 }
 
 // IsEmpty checks if string is empty
